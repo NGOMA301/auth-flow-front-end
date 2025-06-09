@@ -63,7 +63,7 @@ const Dashboard = () => {
               <CardHeader className="text-center pb-2">
                 <div className="flex justify-center mb-4">
                   <Avatar className="w-24 h-24 border-4 border-white shadow-lg">
-                    <AvatarImage src={user.profileImageUrl} alt={user.username} />
+                    <AvatarImage src={user.profileImageUrl} alt={user.username} className='object-cover'/>
                     <AvatarFallback className="text-xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 text-white">
                       {user.username.charAt(0).toUpperCase()}
                     </AvatarFallback>

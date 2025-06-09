@@ -1,5 +1,5 @@
 
-const API_BASE_URL = 'https://localhost:5000/api/auth';
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/auth`;
 
 class AuthService {
   private async makeRequest(endpoint: string, options: RequestInit = {}) {

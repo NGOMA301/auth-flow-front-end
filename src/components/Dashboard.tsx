@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { LogOut, User, Mail, Calendar, Settings } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import SessionsManager from './SessionsManager';
+import ProfileUpdateModal from './ProfileUpdateModal';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -72,6 +73,9 @@ const Dashboard = () => {
                 </div>
                 <CardTitle className="text-xl">{user.username}</CardTitle>
                 <CardDescription className="text-muted-foreground">{user.email}</CardDescription>
+                <div className="pt-4">
+                  <ProfileUpdateModal />
+                </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50">

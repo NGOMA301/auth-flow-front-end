@@ -1,4 +1,3 @@
-
 const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api`;
 
 class AuthService {
@@ -71,6 +70,20 @@ class AuthService {
   async logoutSession(sessionId: string) {
     return this.makeRequest(`/sessions/${sessionId}`, {
       method: 'DELETE',
+    });
+  }
+
+  async updateProfile(email?: string, username?: string, profileImage?: File) {
+    const formData = new FormData();
+    
+    if (email) formData.append('email', email);
+    if (username) formData.append('username', username);
+    if (profileImage) formData.append('profileImage', profileImage);
+
+    return this.makeRequest('/auth/me/update', {
+      method: 'PUT',
+      headers: {}, // Remove Content-Type to let browser set it for FormData
+      body: formData,
     });
   }
 }

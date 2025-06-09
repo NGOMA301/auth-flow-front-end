@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/contexts/AuthContext';
 import { LogOut, User, Mail, Calendar, Settings } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import SessionsManager from './SessionsManager';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -140,6 +141,9 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
             </div>
+
+            {/* Sessions Manager */}
+            <SessionsManager />
 
             {/* Activity Card */}
             <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm animate-fade-in">

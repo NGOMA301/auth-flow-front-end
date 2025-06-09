@@ -1,5 +1,5 @@
 
-const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/auth`;
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api`;
 
 class AuthService {
   private async makeRequest(endpoint: string, options: RequestInit = {}) {
@@ -24,7 +24,7 @@ class AuthService {
   }
 
   async login(identifier: string, password: string) {
-    return this.makeRequest('/login', {
+    return this.makeRequest('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ identifier, password }),
     });
@@ -37,7 +37,7 @@ class AuthService {
     formData.append('password', password);
     formData.append('profile', profileImage);
 
-    return this.makeRequest('/register', {
+    return this.makeRequest('/auth/register', {
       method: 'POST',
       headers: {}, // Remove Content-Type to let browser set it for FormData
       body: formData,
@@ -45,20 +45,32 @@ class AuthService {
   }
 
   async logout() {
-    return this.makeRequest('/logout', {
+    return this.makeRequest('/auth/logout', {
       method: 'GET',
     });
   }
 
   async getProfile() {
-    return this.makeRequest('/me', {
+    return this.makeRequest('/auth/me', {
       method: 'GET',
     });
   }
 
   async refreshToken() {
-    return this.makeRequest('/refresh-token', {
+    return this.makeRequest('/auth/refresh-token', {
       method: 'GET',
+    });
+  }
+
+  async getSessions() {
+    return this.makeRequest('/sessions', {
+      method: 'GET',
+    });
+  }
+
+  async logoutSession(sessionId: string) {
+    return this.makeRequest(`/sessions/${sessionId}`, {
+      method: 'DELETE',
     });
   }
 }
